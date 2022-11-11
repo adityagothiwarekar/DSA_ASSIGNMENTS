@@ -1,109 +1,89 @@
-//WAP TO CONVERT INFIX TO POSTFIX
 #include<stdio.h>
 #include<stdlib.h>
-#include<string.h>
+#define size 20
 
-char stack[20];
+int stack[size];
+int j = -1;
 
-int top = -1;
+void push(int);
+int pop();
+int eval(char exp[]);
 
-void push(char);
-char pop();
-
-
-//main function
 int main()
 {
-    // Declaration 
-    char infix[25], postfix[25];
-    int len, i, j;
-    j = -1;
-
-    
-    printf("Enter a Infix Expression : ");
-    scanf("%s", infix);
-
-    
-    len = strlen(infix);
-
-    
-    for(i = 0; i < len; i++)
-    {
-        if(infix[i] >=  '0' && infix[i] <= '9')
-        {
-            postfix[++j] = infix[i];
-        } else {
-            if(infix[i] == '(')
-            {
-                push(infix[i]);
-            }
-            if(infix[i] == ')')
-            {
-                char ch = '/';
-                while(ch != '(')
-                {
-                    ch = pop();
-                    if(ch != '(')
-                    {
-                        postfix[++j] = ch;
-                    }
-                    
-                }
-            }
-            if(infix[i] == '+' || infix[i] == '-' || infix[i] == '*' || infix[i] == '/')
-            {
-                char y;
-                y = stack[top];
-                if(top == -1 || y == '(' || y < infix[i])
-                {
-                    push(infix[i]);
-                }
-                if(y >= infix[i])
-                {
-                    postfix[j] = pop();
-                    push(infix[i]);
-                }
-            }
-        }
-    }
-    
-
-    
-    while(top != -1)
-    {
-        postfix[++j] = pop();
-    }
-
-    
-    printf("postfix exp : %s\n", postfix);
-
+    char exp[100];
+    printf("Enter a PostFix Expression : ");
+    scanf("%s", exp);
+    int result;
+    result = eval(exp);
+    printf("result : %d\n", result);
     return 0;
 }
 
-
-//Function Definition 
-
-
-void push(char ch)
+int eval(char *exp)
 {
-    if(top==size-1)
+    int len, i;
+
+    len = 0;
+
+    for(i = 0; exp[i] != '\0'; i++)
     {
-        // stack overflow condition
-        printf("Stack is Full!\n");
-    } else {
-        stack[++top] = ch;
+        len+=1;
     }
-}
-//push function ends here
 
-
-
-char pop()
-{
-    if(top == -1)
+    for(i = 0; i < len; i++)
     {
-        printf("Stack is Empty!\n");
+        if(exp[i] >='0' && exp[i] <= '9')
+        {
+            int value;
+            value = exp[i] - '0';
+            // printf("value : %d\n", value);
+            push(value);
+        } else {
+            int val1, val2;
+            val1 = pop();
+            val2 = pop();
+
+            switch(exp[i])
+            {
+                case '+':
+                    push(val2 + val1);break;
+                case '-':
+                    push(val2 - val1);break;
+                case '*':
+                    push(val2 * val1);break;
+                case '/':
+                    push(val2 / val1);break;
+                case '%':
+                    push(val2 / val1);break;
+            }
+        }
+    }
+
+    return pop();
+
+}
+
+void push(int n)
+{
+    if (j == size-1)
+    {
+        printf("\nstack is full!");
     } else {
-        return stack[top--];
+        j++;
+        stack[j] = n;
+    }
+    return;
+}
+
+int pop()
+{
+    if(j == -1)
+    {
+        printf("\nStack is Empty!");
+    }
+    else
+    {
+        return stack[j--];
     }
 }
