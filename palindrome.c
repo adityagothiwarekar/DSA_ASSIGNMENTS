@@ -1,74 +1,67 @@
-#include<stdio.h>
-#include<stdlib.h>
-#include<string.h>
-
-#define size 30
-
-
-/* Stack Declaration */
-char stack[size];
-/* Initializing top to -1 */
-int top = -1;
-
-/* function prototype */
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#define MAX 50
+ 
+int top = -1, front = 0;
+int stack[MAX];
 void push(char);
-char pop();
-
-
-/* Function Definition */
-
-/* push() : adds an element into stack and returns nothing */
-void push(char ch)
+void pop();
+ 
+void main()
 {
-    if(top==size-1)
+    int i, choice;
+    char s[MAX], b;
+    while (1)
     {
-        // stack overflow condition //
-        printf("Stack is Full!\n");
-    } else {
-        stack[++top] = ch;
-    }
-}
-/* push function ends here */
-
-
-/* pop() : remove topmost element in stack and returns element */
-char pop()
-{
-    if(top == -1)
-    {
-        printf("Stack is Empty!\n");
-    } else {
-        return stack[top--];
-    }
-}
-/* pop function ends */
-
-int main()
-{
-    char text[30], revtext[30];
-    int i, len;
-    printf("Enter a text : ");
-    scanf("%s", text);
-    len = strlen(text);
-
-    for(i = 0; i < len; i++)
-    {
-        push(text[i]);
-    }
-
-    for(i = 0; i < len; i++)
-    {
-        revtext[i] = pop();
-    }
-
-    
-    for(i = 0; i < len; i++)
-    {
-        if(revtext[i]!=text[i])
+        printf("1-enter string\n2-exit\n");
+        printf("enter your choice\n");
+        scanf("%d", &choice);
+        switch (choice)
         {
-            printf("Not a palindrome!\n");
-            return 0;
+        case 1:
+            printf("Enter the String\n");
+            scanf("%s", s);
+            for (i = 0;s[i] != '\0';i++)
+            {
+                b = s[i];
+                push(b);
+            }
+            for (i = 0;i < (strlen(s) / 2);i++)
+            {
+                if (stack[top] == stack[front])
+                {
+                    pop();
+                    front++;
+                }
+                else
+                {
+                    printf("%s is not a palindrome\n", s);
+                    break; 
+                }
+            }
+            if ((strlen(s) / 2)  =  =  front)
+                printf("%s is palindrome\n",  s);
+            front  =  0;
+            top  =  -1;
+            break;
+        case 2:
+            exit(0);
+        default:
+            printf("enter correct choice\n");
         }
     }
-    printf("Palindrome!\n");
+}
+ 
+/* to push a character into stack */
+void push(char a)
+{
+    top++;
+    stack[top]  =  a;
+}
+ 
+/* to delete an element in stack */
+void pop()
+{
+    top--;
 }
