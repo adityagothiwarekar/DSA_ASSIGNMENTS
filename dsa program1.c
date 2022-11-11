@@ -8,6 +8,7 @@ int Size=5;
 void push();
 void pop();
 void display();
+void peek();
 //INITIALIZING MAIN FUNCTION
  
 int main()
@@ -20,7 +21,8 @@ int main()
         printf("\n1. Push an element into the stack");
         printf("\n2. Pop out an element from the stack");
         printf("\n3. Display the stack elements");
-        printf("\n4. Exit");
+	printf("\n4.peek");
+        printf("\n5. Exit");
 	    scanf("%d",&choice);
 	    //USING SWITCH CASE TO PERFORM OPERATIONS
 		
@@ -32,7 +34,9 @@ int main()
 					break;
 			case 3: display();
 					break;
-			case 4: exit(1);
+			case 4: peek();
+					break;
+			case 5: exit(1);
 			
 			default: printf("\nwrong choice");
 		}
@@ -85,4 +89,8 @@ void display()
 		for(int i=top;i>=0;--i)
 			printf("%d\n",stack[i]);
 	}
+}
+void peak()
+{
+ printf("%d",stack[top]);
 }
