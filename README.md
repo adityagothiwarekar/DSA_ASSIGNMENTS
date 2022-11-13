@@ -138,7 +138,7 @@ Batch-B
 ||6. Inorder Traversal||
 ||7. Search node in the tree||
 |16.|Write a program to implement traversal of a directed graph through BFS|https://github.com/adityagothiwarekar/DSA_ASSIGNMENTS/blob/main/bfs.c|
-|17.||Write a program to implement traversal of a directed graph through DFS|https://github.com/adityagothiwarekar/DSA_ASSIGNMENTS/blob/main/dfs.c|
+|17.|Write a program to implement traversal of a directed graph through DFS|https://github.com/adityagothiwarekar/DSA_ASSIGNMENTS/blob/main/dfs.c|
 |18.|Write a program to implement Binary Search|https://github.com/adityagothiwarekar/DSA_ASSIGNMENTS/blob/main/binarysearch.c|
 |19.|Write a program to implement Bubble sort|https://github.com/adityagothiwarekar/DSA_ASSIGNMENTS/blob/main/bubsort.c|
 |20.|Write a program to implement Selection sort|https://github.com/adityagothiwarekar/DSA_ASSIGNMENTS/blob/main/selectsort.c|
